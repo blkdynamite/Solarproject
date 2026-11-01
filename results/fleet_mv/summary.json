@@ -1,0 +1,453 @@
+{
+  "config": {
+    "site": {
+      "name": "Greensboro, NC (Piedmont Triad Intl.)",
+      "tmy3_file": "723170TYA.CSV",
+      "timezone": "Etc/GMT+5",
+      "model_year": 2025
+    },
+    "fleet": {
+      "n_homes": 2000,
+      "holdout_share": 0.2,
+      "season_start": "2025-06-01",
+      "season_end": "2025-09-30",
+      "n_events": 15,
+      "min_lookback_days": 21,
+      "event_start_hour": 15,
+      "event_hours": 3,
+      "precool_hours": 1,
+      "snapback_hours": 2,
+      "override_rate": 0.15,
+      "offline_rate": 0.03,
+      "telemetry_gap_rate": 0.01,
+      "long_outage_share": 0.02,
+      "duplicate_rate": 0.002,
+      "seed": 7
+    },
+    "mv": {
+      "baseline_days": 10,
+      "adjustment_hours": 3,
+      "adjustment_cap": 0.4,
+      "min_coverage": 1.0,
+      "n_placebo_days": 10,
+      "n_bootstrap": 500,
+      "confidence": 0.9,
+      "target_precision_pct": 2.0,
+      "capacity_value_per_kw_yr": 100.0,
+      "program_devices": 50000
+    }
+  },
+  "data_quality": {
+    "raw_rows": 5802438,
+    "duplicates_removed": 11582,
+    "missing_device_hours_pct": 1.11,
+    "devices_with_multiday_outage": 38,
+    "eligible_share": {
+      "event/control": 0.941,
+      "event/treatment": 0.94,
+      "placebo/control": 0.944,
+      "placebo/treatment": 0.939
+    },
+    "tests": {
+      "test_adjustment_factor_sane": 0,
+      "test_devices_have_group": 0,
+      "test_events_have_both_groups": 0,
+      "test_stg_telemetry_unique": 0
+    }
+  },
+  "model": {
+    "n_train_rows": 508137,
+    "n_validation_days": 15,
+    "hourly_cv_rmse_pct": 11.9,
+    "fleet_bias_pct": -0.29,
+    "feature_importance": {
+      "morning_kw": 0.393,
+      "temp_4h": 0.222,
+      "dev_hod_kw": 0.179,
+      "temp_12h": 0.093,
+      "dev_temp_slope": 0.041,
+      "hod": 0.039,
+      "tmax_day": 0.018,
+      "dow": 0.011,
+      "temp_c": 0.003
+    }
+  },
+  "true_season_kw_per_device": 1.0081,
+  "methods": {
+    "ten_of_ten": {
+      "label": "10-of-10 baseline",
+      "season_kw": -0.0062,
+      "season_ci_low": -0.0202,
+      "season_ci_high": 0.0064,
+      "true_season_kw": 1.0081,
+      "season_error_pct": -100.6136,
+      "event_mae_kw": 1.0143,
+      "event_error_sd_kw": 0.322,
+      "event_worst_error_pct": 135.8922,
+      "event_ci_halfwidth_kw": 0.0224,
+      "event_ci_coverage": 0.0,
+      "placebo_mean_kw": -0.4541,
+      "placebo_mae_kw": 0.487,
+      "placebo_ci_coverage": 0.0
+    },
+    "ten_of_ten_adj": {
+      "label": "10-of-10 + day-of adjustment",
+      "season_kw": 0.9255,
+      "season_ci_low": 0.9074,
+      "season_ci_high": 0.9425,
+      "true_season_kw": 1.0081,
+      "season_error_pct": -8.1983,
+      "event_mae_kw": 0.2245,
+      "event_error_sd_kw": 0.289,
+      "event_worst_error_pct": 62.8046,
+      "event_ci_halfwidth_kw": 0.0251,
+      "event_ci_coverage": 0.0667,
+      "placebo_mean_kw": 0.1141,
+      "placebo_mae_kw": 0.1325,
+      "placebo_ci_coverage": 0.1
+    },
+    "ml": {
+      "label": "ML counterfactual",
+      "season_kw": 1.0098,
+      "season_ci_low": 0.9941,
+      "season_ci_high": 1.0237,
+      "true_season_kw": 1.0081,
+      "season_error_pct": 0.1688,
+      "event_mae_kw": 0.1859,
+      "event_error_sd_kw": 0.2187,
+      "event_worst_error_pct": 41.6866,
+      "event_ci_halfwidth_kw": 0.0221,
+      "event_ci_coverage": 0.0,
+      "placebo_mean_kw": 0.0607,
+      "placebo_mae_kw": 0.0635,
+      "placebo_ci_coverage": 0.1
+    },
+    "ml_control": {
+      "label": "ML + control group",
+      "season_kw": 1.0109,
+      "season_ci_low": 0.9894,
+      "season_ci_high": 1.0302,
+      "true_season_kw": 1.0081,
+      "season_error_pct": 0.2719,
+      "event_mae_kw": 0.0093,
+      "event_error_sd_kw": 0.0118,
+      "event_worst_error_pct": 2.4236,
+      "event_ci_halfwidth_kw": 0.03,
+      "event_ci_coverage": 1.0,
+      "placebo_mean_kw": 0.0014,
+      "placebo_mae_kw": 0.006,
+      "placebo_ci_coverage": 0.9
+    },
+    "rct": {
+      "label": "Control group (RCT)",
+      "season_kw": 0.9552,
+      "season_ci_low": 0.903,
+      "season_ci_high": 1.0146,
+      "true_season_kw": 1.0081,
+      "season_error_pct": -5.2544,
+      "event_mae_kw": 0.053,
+      "event_error_sd_kw": 0.0235,
+      "event_worst_error_pct": 9.2289,
+      "event_ci_halfwidth_kw": 0.0655,
+      "event_ci_coverage": 0.6667,
+      "placebo_mean_kw": -0.0422,
+      "placebo_mae_kw": 0.0422,
+      "placebo_ci_coverage": 0.9
+    }
+  },
+  "error_kw_per_degc": {
+    "ml": 0.0271,
+    "ml_control": 0.0067,
+    "rct": 0.01,
+    "ten_of_ten": -0.2013,
+    "ten_of_ten_adj": -0.1787
+  },
+  "median_adjustment_factor": {
+    "control": 1.491,
+    "treatment": 1.584
+  },
+  "program_value": {
+    "devices": 50000,
+    "true_mw": 50.41,
+    "true_value_usd": 5040645,
+    "by_method": {
+      "ten_of_ten": {
+        "credited_mw": 0.0,
+        "credited_value_usd": -30932.0,
+        "misstatement_usd": -5071577.0
+      },
+      "ten_of_ten_adj": {
+        "credited_mw": 46.0,
+        "credited_value_usd": 4627398.0,
+        "misstatement_usd": -413247.0
+      },
+      "ml": {
+        "credited_mw": 50.0,
+        "credited_value_usd": 5049155.0,
+        "misstatement_usd": 8510.0
+      },
+      "ml_control": {
+        "credited_mw": 51.0,
+        "credited_value_usd": 5054351.0,
+        "misstatement_usd": 13706.0
+      },
+      "rct": {
+        "credited_mw": 48.0,
+        "credited_value_usd": 4775788.0,
+        "misstatement_usd": -264857.0
+      }
+    }
+  },
+  "holdout": {
+    "sigma_raw_kw": 0.7157,
+    "sigma_ml_adjusted_kw": 0.2368,
+    "precision_gain": 2.18,
+    "tradeoff": [
+      {
+        "holdout_share": 0.01,
+        "control_devices": 500,
+        "ci_halfwidth_pct_raw": 5.234,
+        "ci_halfwidth_pct_ml_adjusted": 1.732,
+        "forgone_mw": 0.505,
+        "forgone_value_usd": 50543.513
+      },
+      {
+        "holdout_share": 0.02,
+        "control_devices": 1000,
+        "ci_halfwidth_pct_raw": 3.72,
+        "ci_halfwidth_pct_ml_adjusted": 1.231,
+        "forgone_mw": 1.011,
+        "forgone_value_usd": 101087.025
+      },
+      {
+        "holdout_share": 0.05,
+        "control_devices": 2500,
+        "ci_halfwidth_pct_raw": 2.39,
+        "ci_halfwidth_pct_ml_adjusted": 0.791,
+        "forgone_mw": 2.527,
+        "forgone_value_usd": 252717.563
+      },
+      {
+        "holdout_share": 0.1,
+        "control_devices": 5000,
+        "ci_halfwidth_pct_raw": 1.736,
+        "ci_halfwidth_pct_ml_adjusted": 0.574,
+        "forgone_mw": 5.054,
+        "forgone_value_usd": 505435.126
+      },
+      {
+        "holdout_share": 0.2,
+        "control_devices": 10000,
+        "ci_halfwidth_pct_raw": 1.302,
+        "ci_halfwidth_pct_ml_adjusted": 0.431,
+        "forgone_mw": 10.109,
+        "forgone_value_usd": 1010870.252
+      },
+      {
+        "holdout_share": 0.3,
+        "control_devices": 15000,
+        "ci_halfwidth_pct_raw": 1.136,
+        "ci_halfwidth_pct_ml_adjusted": 0.376,
+        "forgone_mw": 15.163,
+        "forgone_value_usd": 1516305.378
+      }
+    ]
+  },
+  "events": [
+    {
+      "analysis_id": 1,
+      "kind": "event",
+      "day": "2025-06-26",
+      "tmax": 31.7
+    },
+    {
+      "analysis_id": 2,
+      "kind": "event",
+      "day": "2025-06-27",
+      "tmax": 31.7
+    },
+    {
+      "analysis_id": 3,
+      "kind": "event",
+      "day": "2025-07-07",
+      "tmax": 32.2
+    },
+    {
+      "analysis_id": 4,
+      "kind": "event",
+      "day": "2025-07-08",
+      "tmax": 32.8
+    },
+    {
+      "analysis_id": 5,
+      "kind": "event",
+      "day": "2025-07-09",
+      "tmax": 35.6
+    },
+    {
+      "analysis_id": 6,
+      "kind": "event",
+      "day": "2025-07-10",
+      "tmax": 35.6
+    },
+    {
+      "analysis_id": 7,
+      "kind": "event",
+      "day": "2025-07-11",
+      "tmax": 33.3
+    },
+    {
+      "analysis_id": 8,
+      "kind": "event",
+      "day": "2025-07-14",
+      "tmax": 34.4
+    },
+    {
+      "analysis_id": 9,
+      "kind": "event",
+      "day": "2025-07-15",
+      "tmax": 32.2
+    },
+    {
+      "analysis_id": 1008,
+      "kind": "placebo",
+      "day": "2025-07-17",
+      "tmax": 30.6
+    },
+    {
+      "analysis_id": 1003,
+      "kind": "placebo",
+      "day": "2025-07-18",
+      "tmax": 31.1
+    },
+    {
+      "analysis_id": 10,
+      "kind": "event",
+      "day": "2025-07-21",
+      "tmax": 33.9
+    },
+    {
+      "analysis_id": 11,
+      "kind": "event",
+      "day": "2025-07-22",
+      "tmax": 31.7
+    },
+    {
+      "analysis_id": 12,
+      "kind": "event",
+      "day": "2025-07-28",
+      "tmax": 32.2
+    },
+    {
+      "analysis_id": 1001,
+      "kind": "placebo",
+      "day": "2025-07-29",
+      "tmax": 31.1
+    },
+    {
+      "analysis_id": 1007,
+      "kind": "placebo",
+      "day": "2025-08-05",
+      "tmax": 30.6
+    },
+    {
+      "analysis_id": 1005,
+      "kind": "placebo",
+      "day": "2025-08-06",
+      "tmax": 31.1
+    },
+    {
+      "analysis_id": 13,
+      "kind": "event",
+      "day": "2025-08-07",
+      "tmax": 33.3
+    },
+    {
+      "analysis_id": 14,
+      "kind": "event",
+      "day": "2025-08-08",
+      "tmax": 33.3
+    },
+    {
+      "analysis_id": 1002,
+      "kind": "placebo",
+      "day": "2025-08-11",
+      "tmax": 31.1
+    },
+    {
+      "analysis_id": 1004,
+      "kind": "placebo",
+      "day": "2025-08-12",
+      "tmax": 31.1
+    },
+    {
+      "analysis_id": 1010,
+      "kind": "placebo",
+      "day": "2025-08-14",
+      "tmax": 30.0
+    },
+    {
+      "analysis_id": 15,
+      "kind": "event",
+      "day": "2025-08-27",
+      "tmax": 31.7
+    },
+    {
+      "analysis_id": 1006,
+      "kind": "placebo",
+      "day": "2025-08-28",
+      "tmax": 30.6
+    },
+    {
+      "analysis_id": 1009,
+      "kind": "placebo",
+      "day": "2025-08-29",
+      "tmax": 30.0
+    }
+  ],
+  "validation": {
+    "n_runs": 20,
+    "methods": {
+      "ten_of_ten": {
+        "mean_error_pct": -100.0616,
+        "error_sd_pct": 0.6753,
+        "rmse_pct": 100.0638,
+        "ci_coverage": 0.0,
+        "ci_halfwidth_pct": 1.2994,
+        "placebo_mean_kw": -0.4555
+      },
+      "ten_of_ten_adj": {
+        "mean_error_pct": -7.5564,
+        "error_sd_pct": 0.5646,
+        "rmse_pct": 7.5764,
+        "ci_coverage": 0.0,
+        "ci_halfwidth_pct": 1.7115,
+        "placebo_mean_kw": 0.117
+      },
+      "ml": {
+        "mean_error_pct": 2.9087,
+        "error_sd_pct": 5.5467,
+        "rmse_pct": 6.1391,
+        "ci_coverage": 0.15,
+        "ci_halfwidth_pct": 1.4728,
+        "placebo_mean_kw": 0.083
+      },
+      "ml_control": {
+        "mean_error_pct": -0.2437,
+        "error_sd_pct": 0.9374,
+        "rmse_pct": 0.9456,
+        "ci_coverage": 1.0,
+        "ci_halfwidth_pct": 1.9452,
+        "placebo_mean_kw": -0.0001
+      },
+      "rct": {
+        "mean_error_pct": 0.1281,
+        "error_sd_pct": 2.936,
+        "rmse_pct": 2.8645,
+        "ci_coverage": 1.0,
+        "ci_halfwidth_pct": 5.4635,
+        "placebo_mean_kw": 0.0025
+      }
+    }
+  }
+}

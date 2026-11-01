@@ -19,7 +19,9 @@ def _usd(x: float) -> str:
 
 
 def _pct(x: float, signed: bool = True) -> str:
-    return f"{x:+.0f} %" if signed else f"{x:.0f} %"
+    """Percent with one decimal below 10 % (so small errors don't read as zero)."""
+    fmt = ".1f" if abs(x) < 10 else ".0f"
+    return f"{x:+{fmt}} %" if signed else f"{x:{fmt}} %"
 
 
 def render(s: dict[str, Any], cfg: StudyConfig) -> str:
@@ -205,7 +207,7 @@ def _validation_text(s: dict[str, Any], confidence: float) -> tuple[str, str, st
         f"interval contained the truth {best['ci_coverage']:.0%} of the time"
     )
     ml_spread = (
-        f" (across {n} fleets its season error ranged with a standard deviation of "
+        f" (across {n} independent fleets its season error had a standard deviation of "
         f"{ml_['error_sd_pct']:.1f} points, and its interval contained the truth only "
         f"{ml_['ci_coverage']:.0%} of the time)"
     )
@@ -226,5 +228,11 @@ same weather and event days). A trustworthy method has a mean error near zero an
 | Method | Mean season error | Error SD (pts) | RMSE | {confidence:.0%} CI contains truth | Avg CI half-width |
 |---|---|---|---|---|---|
 {rows}
+
+With {n} fleets, coverage is only a rough check: a perfectly calibrated {confidence:.0%}
+interval contains the truth in all {n} runs about {confidence**n:.0%} of the time, so 100 %
+is consistent with calibration but suggests the intervals may be slightly conservative. The
+baselines and the standalone ML model fail because their intervals reflect sampling noise
+only, not their systematic error.
 """
     return calibration, ml_spread, section

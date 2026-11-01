@@ -58,6 +58,7 @@ ignore = ["RUF001", "RUF002", "RUF003"]
 # Every function is typed; pandas-stubs is deliberately not used (its strictness
 # around label-based indexing adds noise without catching real bugs here).
 python_version = "3.11"
+mypy_path = "src"
 ignore_missing_imports = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
