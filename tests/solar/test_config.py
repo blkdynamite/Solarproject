@@ -4,7 +4,7 @@ import pytest
 
 from solar_rooftop.config import ConfigError, ProjectConfig, load_config
 
-REPO = Path(__file__).resolve().parents[1]
+REPO = Path(__file__).resolve().parents[2]
 
 
 def test_shipped_config_matches_defaults() -> None:

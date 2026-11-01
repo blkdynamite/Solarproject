@@ -1,0 +1,38 @@
+# Smart-thermostat demand-response program, summer season, Greensboro NC weather.
+# Fleet behaviour is simulated so every M&V method can be scored against the truth.
+
+[site]
+name = "Greensboro, NC (Piedmont Triad Intl.)"
+tmy3_file = "723170TYA.CSV"
+timezone = "Etc/GMT+5"
+model_year = 2025
+
+[fleet]
+n_homes = 2000
+holdout_share = 0.20          # randomised control group, never dispatched
+season_start = "2025-06-01"
+season_end = "2025-09-30"
+n_events = 15                 # dispatched on the hottest weekdays
+min_lookback_days = 21
+event_start_hour = 15         # 15:00-18:00 local standard time
+event_hours = 3
+precool_hours = 1
+snapback_hours = 2
+override_rate = 0.15          # customers who opt out mid-event (rises with heat)
+offline_rate = 0.03           # devices that miss the dispatch signal
+telemetry_gap_rate = 0.01
+long_outage_share = 0.02
+duplicate_rate = 0.002
+seed = 7
+
+[mv]
+baseline_days = 10            # "10-of-10"
+adjustment_hours = 3          # day-of adjustment window right before the event
+adjustment_cap = 0.4          # adjustment factor limited to 0.6-1.4
+min_coverage = 1.0
+n_placebo_days = 10
+n_bootstrap = 500
+confidence = 0.90
+target_precision_pct = 2.0     # +/- per-event precision used to size the holdout
+capacity_value_per_kw_yr = 100.0   # illustrative avoided capacity cost
+program_devices = 50000

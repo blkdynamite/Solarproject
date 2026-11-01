@@ -1,9 +1,6 @@
-# Commercial Rooftop Solar: Yield, Financials & Performance Monitoring
+# Case study 2: Commercial rooftop solar (yield, financials, performance monitoring)
 
-[![CI](https://github.com/blkdynamite/Solarproject/actions/workflows/ci.yml/badge.svg)](https://github.com/blkdynamite/Solarproject/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.11%20|%203.12%20|%203.13-blue)
-![Typed](https://img.shields.io/badge/typing-mypy-informational)
-![Coverage](https://img.shields.io/badge/coverage-96%25-brightgreen)
+[← Back to portfolio](../README.md)
 
 An end-to-end analysis of a **300 kW-DC rooftop PV system on a commercial warehouse in Greensboro, NC**, packaged as a tested, configurable Python tool. It covers three parts of the job that commercial solar analysts do every day:
 
@@ -13,7 +10,7 @@ An end-to-end analysis of a **300 kW-DC rooftop PV system on a commercial wareho
 
 ```bash
 make install   # pip install -c requirements-lock.txt -e ".[dev]"
-make run       # full analysis -> results/  (~5 s)
+make solar     # full analysis -> results/  (~5 s)
 make check     # ruff + mypy + pytest, exactly what CI runs
 ```
 
@@ -48,7 +45,7 @@ P90 assumes a combined 6 % (1σ) uncertainty from inter-annual weather variabili
 - **With the ITC** it clears a 7 % hurdle comfortably.
 - **The after-tax view** is how a taxable commercial owner would actually evaluate it. Energy savings raise taxable income, while O&M and 5-year MACRS depreciation (on a basis reduced by half the ITC) reduce it. Accelerated depreciation pulls the payback forward even though the 25-year NPV is lower than the pre-tax ITC case, because the savings themselves are taxed. Even at **P90 production**, the after-tax NPV stays positive at **+$77k**.
 
-![NPV sensitivity](results/5_npv_sensitivity.png)
+![NPV sensitivity](../results/5_npv_sensitivity.png)
 
 The base-case NPV is most sensitive to the **discount rate**, the **retail tariff** and **ITC eligibility**. Losing the ITC flips the after-tax NPV to about –$28k. Yield, capex and tariff escalation matter about equally, and O&M and degradation are second-order. In practice, that tells you where diligence effort should go.
 
@@ -71,7 +68,7 @@ I simulated a year of meter data with three hidden problems and wrote a detector
 | Soiling: detection latency | mean 21 days (range 5–34) |
 | False-positive days per year | mean 0.18 (out of ~290 healthy days); ≥ 1 in 29 of 200 runs |
 
-![Monitoring](results/6_performance_monitoring.png)
+![Monitoring](../results/6_performance_monitoring.png)
 
 The soiling latency is the expected trade-off. A gradual 8 % ramp has to rise above the day-to-day noise before it can be called. Tightening the threshold from 3 % to 2.5 % cuts the mean latency to about 17 days but roughly doubles the false-alarm rate. The threshold is a single config value, so an O&M team can tune it to its own tolerance for truck rolls.
 
@@ -79,8 +76,8 @@ The soiling latency is the expected trade-off. A gradual 8 % ramp has to rise ab
 
 | | |
 |---|---|
-| ![](results/1_monthly_production.png) | ![](results/2_design_tradeoffs.png) |
-| ![](results/3_daily_profile.png) | ![](results/4_cash_flow.png) |
+| ![](../results/1_monthly_production.png) | ![](../results/2_design_tradeoffs.png) |
+| ![](../results/3_daily_profile.png) | ![](../results/4_cash_flow.png) |
 
 ---
 
@@ -97,7 +94,7 @@ The soiling latency is the expected trade-off. A gradual 8 % ramp has to rise ab
 │   ├── plotting.py    # report charts
 │   ├── pipeline.py    # orchestration + Monte Carlo detector evaluation
 │   └── cli.py         # `solar-rooftop run | evaluate-detector`
-├── tests/             # 49 tests, 96 % coverage
+├── tests/solar/       # 49 tests
 ├── results/           # generated charts, summary.json, CSVs
 └── .github/workflows/ci.yml       # lint, type-check, test on 3.11–3.13
 ```

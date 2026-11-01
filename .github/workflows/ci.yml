@@ -36,6 +36,8 @@ jobs:
       - name: Type-check
         run: mypy src tests
       - name: Test
-        run: pytest --cov=solar_rooftop --cov-report=term-missing
-      - name: Smoke-run the CLI
-        run: solar-rooftop run --out /tmp/results --no-plots
+        run: pytest --cov=solar_rooftop --cov=der_mv --cov-report=term-missing
+      - name: Smoke-run the CLIs
+        run: |
+          solar-rooftop run --out /tmp/results --no-plots
+          fleet-mv run --homes 300 --out /tmp/fleet --no-plots

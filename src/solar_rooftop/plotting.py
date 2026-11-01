@@ -49,7 +49,7 @@ def apply_style() -> None:
             "text.color": INK,
             "axes.labelcolor": INK_2,
             "axes.titlesize": 11,
-            "axes.titleweight": "semibold",
+            "axes.titleweight": "bold",
             "axes.titlelocation": "left",
             "axes.titlepad": 10,
             "axes.edgecolor": AXIS,
