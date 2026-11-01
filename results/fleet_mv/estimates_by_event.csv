@@ -1,0 +1,126 @@
+method,label,analysis_id,kind,day,tmax,estimate_kw,ci_low_kw,ci_high_kw,truth_kw,error_kw,covered
+ten_of_ten,10-of-10 baseline,1,event,2025-06-26,31.7,0.1145,0.0923,0.1331,1.005,-0.8905,False
+ten_of_ten,10-of-10 baseline,2,event,2025-06-27,31.7,0.1098,0.0891,0.1292,0.9968,-0.887,False
+ten_of_ten,10-of-10 baseline,3,event,2025-07-07,32.2,-0.0458,-0.0672,-0.0247,1.0118,-1.0576,False
+ten_of_ten,10-of-10 baseline,4,event,2025-07-08,32.8,-0.1393,-0.162,-0.1164,1.0238,-1.1631,False
+ten_of_ten,10-of-10 baseline,5,event,2025-07-09,35.6,-0.3801,-0.4075,-0.3533,1.1237,-1.5038,False
+ten_of_ten,10-of-10 baseline,6,event,2025-07-10,35.6,-0.4103,-0.4425,-0.3844,1.143,-1.5533,False
+ten_of_ten,10-of-10 baseline,7,event,2025-07-11,33.3,-0.1549,-0.1783,-0.1337,1.0218,-1.1767,False
+ten_of_ten,10-of-10 baseline,8,event,2025-07-14,34.4,-0.2287,-0.2536,-0.2057,1.035,-1.2637,False
+ten_of_ten,10-of-10 baseline,9,event,2025-07-15,32.2,0.0504,0.0306,0.0687,0.9203,-0.8699,False
+ten_of_ten,10-of-10 baseline,10,event,2025-07-21,33.9,-0.0649,-0.0887,-0.0399,1.0563,-1.1213,False
+ten_of_ten,10-of-10 baseline,11,event,2025-07-22,31.7,0.1541,0.136,0.1718,0.9498,-0.7957,False
+ten_of_ten,10-of-10 baseline,12,event,2025-07-28,32.2,0.2252,0.2067,0.2458,0.8992,-0.674,False
+ten_of_ten,10-of-10 baseline,13,event,2025-08-07,33.3,0.077,0.0513,0.0986,1.0471,-0.9701,False
+ten_of_ten,10-of-10 baseline,14,event,2025-08-08,33.3,0.0309,0.0027,0.0553,1.066,-1.0351,False
+ten_of_ten,10-of-10 baseline,15,event,2025-08-27,31.7,0.5694,0.5503,0.5879,0.8224,-0.2531,False
+ten_of_ten,10-of-10 baseline,1001,placebo,2025-07-29,31.1,-0.5982,-0.6114,-0.5842,0.0,-0.5982,False
+ten_of_ten,10-of-10 baseline,1002,placebo,2025-08-11,31.1,0.1645,0.1539,0.1757,0.0,0.1645,False
+ten_of_ten,10-of-10 baseline,1003,placebo,2025-07-18,31.1,-0.7005,-0.7149,-0.6873,0.0,-0.7005,False
+ten_of_ten,10-of-10 baseline,1004,placebo,2025-08-12,31.1,-0.4755,-0.4884,-0.4624,0.0,-0.4755,False
+ten_of_ten,10-of-10 baseline,1005,placebo,2025-08-06,31.1,-0.6251,-0.6384,-0.6116,0.0,-0.6251,False
+ten_of_ten,10-of-10 baseline,1006,placebo,2025-08-28,30.6,-0.3656,-0.3787,-0.3539,0.0,-0.3656,False
+ten_of_ten,10-of-10 baseline,1007,placebo,2025-08-05,30.6,-0.5983,-0.6117,-0.5839,0.0,-0.5983,False
+ten_of_ten,10-of-10 baseline,1008,placebo,2025-07-17,30.6,-0.6822,-0.6943,-0.6693,0.0,-0.6822,False
+ten_of_ten,10-of-10 baseline,1009,placebo,2025-08-29,30.0,-0.3342,-0.3465,-0.3208,0.0,-0.3342,False
+ten_of_ten,10-of-10 baseline,1010,placebo,2025-08-14,30.0,-0.3258,-0.3377,-0.3133,0.0,-0.3258,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1,event,2025-06-26,31.7,1.0591,1.0341,1.0796,1.005,0.0541,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,2,event,2025-06-27,31.7,1.0882,1.0638,1.1119,0.9968,0.0914,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,3,event,2025-07-07,32.2,0.874,0.8502,0.8978,1.0118,-0.1378,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,4,event,2025-07-08,32.8,0.7934,0.7685,0.8178,1.0238,-0.2304,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,5,event,2025-07-09,35.6,0.5746,0.5431,0.6057,1.1237,-0.5491,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,6,event,2025-07-10,35.6,0.5431,0.5068,0.5702,1.143,-0.5999,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,7,event,2025-07-11,33.3,0.7867,0.7598,0.8095,1.0218,-0.2351,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,8,event,2025-07-14,34.4,0.714,0.6859,0.7389,1.035,-0.321,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,9,event,2025-07-15,32.2,0.8318,0.8093,0.8507,0.9203,-0.0885,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,10,event,2025-07-21,33.9,0.9143,0.887,0.9406,1.0563,-0.1421,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,11,event,2025-07-22,31.7,1.0362,1.0144,1.0583,0.9498,0.0864,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,12,event,2025-07-28,32.2,1.1507,1.129,1.1718,0.8992,0.2515,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,13,event,2025-08-07,33.3,1.1065,1.078,1.1312,1.0471,0.0594,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,14,event,2025-08-08,33.3,1.0708,1.0417,1.1017,1.066,0.0049,True
+ten_of_ten_adj,10-of-10 + day-of adjustment,15,event,2025-08-27,31.7,1.339,1.3179,1.3583,0.8224,0.5165,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1001,placebo,2025-07-29,31.1,0.0022,-0.0053,0.009,0.0,0.0022,True
+ten_of_ten_adj,10-of-10 + day-of adjustment,1002,placebo,2025-08-11,31.1,0.7515,0.7426,0.7609,0.0,0.7515,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1003,placebo,2025-07-18,31.1,-0.049,-0.0562,-0.0423,0.0,-0.049,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1004,placebo,2025-08-12,31.1,0.0626,0.0561,0.0685,0.0,0.0626,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1005,placebo,2025-08-06,31.1,0.127,0.1176,0.1348,0.0,0.127,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1006,placebo,2025-08-28,30.6,0.0251,0.0191,0.0313,0.0,0.0251,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1007,placebo,2025-08-05,30.6,0.0659,0.0589,0.0734,0.0,0.0659,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1008,placebo,2025-07-17,30.6,-0.0429,-0.0505,-0.0354,0.0,-0.0429,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1009,placebo,2025-08-29,30.0,0.1574,0.1515,0.1641,0.0,0.1574,False
+ten_of_ten_adj,10-of-10 + day-of adjustment,1010,placebo,2025-08-14,30.0,0.0412,0.0361,0.0472,0.0,0.0412,False
+ml,ML counterfactual,1,event,2025-06-26,31.7,1.13,1.1067,1.1514,1.005,0.125,False
+ml,ML counterfactual,2,event,2025-06-27,31.7,1.2992,1.2771,1.3221,0.9968,0.3024,False
+ml,ML counterfactual,3,event,2025-07-07,32.2,0.7985,0.7778,0.8201,1.0118,-0.2133,False
+ml,ML counterfactual,4,event,2025-07-08,32.8,0.9205,0.8977,0.9406,1.0238,-0.1033,False
+ml,ML counterfactual,5,event,2025-07-09,35.6,1.0618,1.0328,1.0888,1.1237,-0.0619,False
+ml,ML counterfactual,6,event,2025-07-10,35.6,1.4715,1.4405,1.4977,1.143,0.3285,False
+ml,ML counterfactual,7,event,2025-07-11,33.3,1.1773,1.1543,1.1988,1.0218,0.1555,False
+ml,ML counterfactual,8,event,2025-07-14,34.4,1.1791,1.1557,1.2019,1.035,0.1441,False
+ml,ML counterfactual,9,event,2025-07-15,32.2,0.6472,0.6284,0.6646,0.9203,-0.2731,False
+ml,ML counterfactual,10,event,2025-07-21,33.9,0.779,0.7567,0.8002,1.0563,-0.2774,False
+ml,ML counterfactual,11,event,2025-07-22,31.7,1.0378,1.0177,1.058,0.9498,0.0881,False
+ml,ML counterfactual,12,event,2025-07-28,32.2,0.5243,0.5064,0.5419,0.8992,-0.3748,False
+ml,ML counterfactual,13,event,2025-08-07,33.3,0.9693,0.9466,0.9902,1.0471,-0.0778,False
+ml,ML counterfactual,14,event,2025-08-08,33.3,1.2654,1.24,1.2889,1.066,0.1995,False
+ml,ML counterfactual,15,event,2025-08-27,31.7,0.8865,0.8673,0.9036,0.8224,0.0641,False
+ml,ML counterfactual,1001,placebo,2025-07-29,31.1,0.0426,0.0351,0.0505,0.0,0.0426,False
+ml,ML counterfactual,1002,placebo,2025-08-11,31.1,0.136,0.1311,0.1412,0.0,0.136,False
+ml,ML counterfactual,1003,placebo,2025-07-18,31.1,-0.0122,-0.0203,-0.005,0.0,-0.0122,False
+ml,ML counterfactual,1004,placebo,2025-08-12,31.1,0.0213,0.014,0.0289,0.0,0.0213,False
+ml,ML counterfactual,1005,placebo,2025-08-06,31.1,0.0936,0.0857,0.1018,0.0,0.0936,False
+ml,ML counterfactual,1006,placebo,2025-08-28,30.6,0.0137,0.0055,0.0207,0.0,0.0137,False
+ml,ML counterfactual,1007,placebo,2025-08-05,30.6,0.0326,0.0254,0.0398,0.0,0.0326,False
+ml,ML counterfactual,1008,placebo,2025-07-17,30.6,0.0977,0.091,0.1044,0.0,0.0977,False
+ml,ML counterfactual,1009,placebo,2025-08-29,30.0,0.1833,0.1758,0.191,0.0,0.1833,False
+ml,ML counterfactual,1010,placebo,2025-08-14,30.0,-0.0015,-0.009,0.0054,0.0,-0.0015,True
+ml_control,ML + control group,1,event,2025-06-26,31.7,1.0074,0.9783,1.035,1.005,0.0024,True
+ml_control,ML + control group,2,event,2025-06-27,31.7,0.9904,0.962,1.0191,0.9968,-0.0064,True
+ml_control,ML + control group,3,event,2025-07-07,32.2,1.0166,0.99,1.0449,1.0118,0.0048,True
+ml_control,ML + control group,4,event,2025-07-08,32.8,1.0237,0.9917,1.0515,1.0238,-0.0001,True
+ml_control,ML + control group,5,event,2025-07-09,35.6,1.1509,1.1099,1.1908,1.1237,0.0272,True
+ml_control,ML + control group,6,event,2025-07-10,35.6,1.1594,1.1165,1.1986,1.143,0.0164,True
+ml_control,ML + control group,7,event,2025-07-11,33.3,1.0233,0.9896,1.0534,1.0218,0.0015,True
+ml_control,ML + control group,8,event,2025-07-14,34.4,1.0384,1.0055,1.0692,1.035,0.0034,True
+ml_control,ML + control group,9,event,2025-07-15,32.2,0.9083,0.8841,0.9341,0.9203,-0.012,True
+ml_control,ML + control group,10,event,2025-07-21,33.9,1.0659,1.0396,1.096,1.0563,0.0096,True
+ml_control,ML + control group,11,event,2025-07-22,31.7,0.9551,0.93,0.9815,0.9498,0.0053,True
+ml_control,ML + control group,12,event,2025-07-28,32.2,0.884,0.8581,0.9094,0.8992,-0.0152,True
+ml_control,ML + control group,13,event,2025-08-07,33.3,1.0538,1.0229,1.0826,1.0471,0.0068,True
+ml_control,ML + control group,14,event,2025-08-08,33.3,1.0791,1.0462,1.1141,1.066,0.0132,True
+ml_control,ML + control group,15,event,2025-08-27,31.7,0.8067,0.7839,0.827,0.8224,-0.0157,True
+ml_control,ML + control group,1001,placebo,2025-07-29,31.1,0.0039,-0.0142,0.0203,0.0,0.0039,True
+ml_control,ML + control group,1002,placebo,2025-08-11,31.1,-0.0002,-0.0116,0.0115,0.0,-0.0002,True
+ml_control,ML + control group,1003,placebo,2025-07-18,31.1,0.0002,-0.0155,0.0179,0.0,0.0002,True
+ml_control,ML + control group,1004,placebo,2025-08-12,31.1,0.0173,0.0006,0.034,0.0,0.0173,False
+ml_control,ML + control group,1005,placebo,2025-08-06,31.1,-0.0073,-0.0225,0.0098,0.0,-0.0073,True
+ml_control,ML + control group,1006,placebo,2025-08-28,30.6,-0.0055,-0.0216,0.0121,0.0,-0.0055,True
+ml_control,ML + control group,1007,placebo,2025-08-05,30.6,0.0056,-0.0109,0.0233,0.0,0.0056,True
+ml_control,ML + control group,1008,placebo,2025-07-17,30.6,-0.006,-0.02,0.0108,0.0,-0.006,True
+ml_control,ML + control group,1009,placebo,2025-08-29,30.0,0.0102,-0.0061,0.0257,0.0,0.0102,True
+ml_control,ML + control group,1010,placebo,2025-08-14,30.0,-0.0039,-0.0197,0.0142,0.0,-0.0039,True
+rct,Control group (RCT),1,event,2025-06-26,31.7,0.9166,0.8533,0.9845,1.005,-0.0885,False
+rct,Control group (RCT),2,event,2025-06-27,31.7,0.9193,0.8571,0.9849,0.9968,-0.0775,False
+rct,Control group (RCT),3,event,2025-07-07,32.2,0.9655,0.9055,1.0262,1.0118,-0.0463,True
+rct,Control group (RCT),4,event,2025-07-08,32.8,0.9542,0.8917,1.0233,1.0238,-0.0696,False
+rct,Control group (RCT),5,event,2025-07-09,35.6,1.0946,1.0223,1.1663,1.1237,-0.0291,True
+rct,Control group (RCT),6,event,2025-07-10,35.6,1.1078,1.0442,1.1725,1.143,-0.0353,True
+rct,Control group (RCT),7,event,2025-07-11,33.3,0.9314,0.869,0.9986,1.0218,-0.0904,False
+rct,Control group (RCT),8,event,2025-07-14,34.4,0.9928,0.9212,1.0661,1.035,-0.0422,True
+rct,Control group (RCT),9,event,2025-07-15,32.2,0.8574,0.7926,0.9245,0.9203,-0.0629,True
+rct,Control group (RCT),10,event,2025-07-21,33.9,1.0332,0.9715,1.106,1.0563,-0.0231,True
+rct,Control group (RCT),11,event,2025-07-22,31.7,0.905,0.8414,0.9723,0.9498,-0.0448,True
+rct,Control group (RCT),12,event,2025-07-28,32.2,0.8501,0.7924,0.9107,0.8992,-0.0491,True
+rct,Control group (RCT),13,event,2025-08-07,33.3,1.0326,0.9678,1.1038,1.0471,-0.0145,True
+rct,Control group (RCT),14,event,2025-08-08,33.3,1.0205,0.9533,1.0908,1.066,-0.0455,True
+rct,Control group (RCT),15,event,2025-08-27,31.7,0.7465,0.6917,0.8079,0.8224,-0.0759,False
+rct,Control group (RCT),1001,placebo,2025-07-29,31.1,-0.0269,-0.0879,0.0347,0.0,-0.0269,True
+rct,Control group (RCT),1002,placebo,2025-08-11,31.1,-0.0484,-0.1022,0.0042,0.0,-0.0484,True
+rct,Control group (RCT),1003,placebo,2025-07-18,31.1,-0.0542,-0.1184,0.0074,0.0,-0.0542,True
+rct,Control group (RCT),1004,placebo,2025-08-12,31.1,-0.016,-0.0774,0.0477,0.0,-0.016,True
+rct,Control group (RCT),1005,placebo,2025-08-06,31.1,-0.0472,-0.1113,0.0178,0.0,-0.0472,True
+rct,Control group (RCT),1006,placebo,2025-08-28,30.6,-0.038,-0.1025,0.0252,0.0,-0.038,True
+rct,Control group (RCT),1007,placebo,2025-08-05,30.6,-0.0338,-0.0936,0.032,0.0,-0.0338,True
+rct,Control group (RCT),1008,placebo,2025-07-17,30.6,-0.0852,-0.1454,-0.0199,0.0,-0.0852,False
+rct,Control group (RCT),1009,placebo,2025-08-29,30.0,-0.0233,-0.086,0.0388,0.0,-0.0233,True
+rct,Control group (RCT),1010,placebo,2025-08-14,30.0,-0.0495,-0.1087,0.0096,0.0,-0.0495,True
