@@ -1,0 +1,9 @@
+driver,low_label,high_label,npv_low,npv_high,swing
+Degradation,0.8 %/yr,0.3 %/yr,101701.0,125677.0,23976.0
+O&M cost,+25 %,-25 %,100680.0,131098.0,30419.0
+Tariff escalation,-1 pt,+1 pt,71997.0,166025.0,94028.0
+Installed cost,+15 %,-15 %,68261.0,163518.0,95257.0
+Energy yield,-10 %,+10 %,65665.0,166113.0,100448.0
+ITC,0 %,30 %,-27572.0,115889.0,143461.0
+Retail tariff,-15 %,+15 %,40553.0,191225.0,150671.0
+Discount rate,+2 pt,-2 pt,35016.0,223256.0,188240.0

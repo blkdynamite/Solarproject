@@ -1,0 +1,32 @@
+# Versions this project was last tested with on Python 3.12/3.13 (pip constraints, used in CI).
+# Install: pip install -c requirements-lock.txt -e ".[dev]"
+contourpy==1.4.0
+coverage==7.17.0
+cycler==0.12.1
+fonttools==4.68.0
+h5py==3.16.0
+iniconfig==2.3.1
+kiwisolver==1.5.1
+librt==0.16.0
+matplotlib==3.11.2
+mypy==2.4.1
+mypy_extensions==1.1.0
+numpy==2.5.4
+packaging==26.3
+pandas==2.3.3
+pathspec==1.1.1
+pillow==13.0.0
+pluggy==1.7.0
+pvlib==0.16.1
+Pygments==2.21.0
+pyparsing==3.3.3
+pytest==9.2.0
+pytest-cov==7.1.0
+python-dateutil==3.0.0
+pytz==2026.6
+requests==2.34.2
+ruff==0.17.3
+scipy==1.18.1
+six==1.17.0
+typing_extensions==4.16.0
+tzdata==2026.6

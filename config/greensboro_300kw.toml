@@ -1,0 +1,47 @@
+# 300 kW-DC ballasted rooftop array on a commercial warehouse, Greensboro, NC.
+# Every model input lives here. Copy this file to model another site or case.
+
+[site]
+name = "Greensboro, NC (Piedmont Triad Intl.)"
+tmy3_file = "723170TYA.CSV"   # bundled with pvlib; absolute paths also accepted
+timezone = "Etc/GMT+5"        # TMY3 is local standard time (no DST)
+model_year = 2025
+
+[system]
+dc_kw = 300.0
+dc_ac_ratio = 1.2             # -> 250 kW AC
+n_inverters = 5               # 5 x 50 kW string inverters
+tilt_deg = 10.0               # low-tilt ballasted racking, typical for flat roofs
+azimuth_deg = 180.0           # due south
+gamma_pdc = -0.0035           # power temperature coefficient (1/degC), mono-PERC
+losses_pct = 14.0             # PVWatts default: soiling, wiring, mismatch, LID, availability...
+inverter_eff_nom = 0.96
+racking = "open_rack_glass_polymer"
+transposition_model = "haydavies"
+
+[finance]
+capex_per_w_dc = 1.90         # $/W-DC installed, commercial rooftop
+om_per_kw_yr = 18.0           # $/kW-DC-yr
+om_escalation = 0.025
+tariff_per_kwh = 0.12         # avoided retail energy charge
+tariff_escalation = 0.025
+degradation = 0.005           # 0.5 %/yr
+discount_rate = 0.07
+life_yrs = 25
+itc = 0.30                    # scenario only: eligibility depends on start/in-service dates
+inverter_replace_yr = 13
+inverter_replace_per_w_ac = 0.10
+tax_rate = 0.23               # illustrative blended federal + state corporate rate
+macrs_schedule = [0.20, 0.32, 0.192, 0.1152, 0.1152, 0.0576]  # 5-yr MACRS, half-year convention
+yield_uncertainty = 0.06      # combined 1-sigma (weather variability + model), for P90
+
+[monitoring]
+seed = 42
+hourly_noise = 0.02
+daily_noise = 0.015
+min_expected_kwh_per_kwp = 1.0 # skip very overcast days
+baseline_window_days = 60
+baseline_min_days = 14
+drift_window_days = 7
+drift_threshold = 0.03
+major_outage_threshold = 0.5

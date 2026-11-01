@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Locked: exact versions from requirements-lock.txt (reproducible).
+          - { python-version: "3.12", constraints: "-c requirements-lock.txt" }
+          - { python-version: "3.13", constraints: "-c requirements-lock.txt" }
+          # Floating: newest versions allowed by pyproject (catches upstream breakage early).
+          - { python-version: "3.11", constraints: "" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install
+        run: pip install ${{ matrix.constraints }} -e ".[dev]"
+      - name: Lint
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Type-check
+        run: mypy src tests
+      - name: Test
+        run: pytest --cov=solar_rooftop --cov-report=term-missing
+      - name: Smoke-run the CLI
+        run: solar-rooftop run --out /tmp/results --no-plots
