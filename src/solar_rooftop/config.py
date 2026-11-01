@@ -54,14 +54,14 @@ class SystemConfig:
         return self.ac_kw / self.n_inverters
 
     def validate(self) -> None:
-        _require(self.dc_kw > 0, "system.dc_kw must be positive")
-        _require(0.8 <= self.dc_ac_ratio <= 2.0, "system.dc_ac_ratio must be within 0.8-2.0")
-        _require(self.n_inverters >= 1, "system.n_inverters must be >= 1")
-        _require(0 <= self.tilt_deg <= 90, "system.tilt_deg must be within 0-90")
-        _require(0 <= self.azimuth_deg < 360, "system.azimuth_deg must be within 0-360")
-        _require(-0.01 < self.gamma_pdc < 0, "system.gamma_pdc should be a small negative number")
-        _require(0 <= self.losses_pct < 50, "system.losses_pct must be within 0-50")
-        _require(0.8 < self.inverter_eff_nom <= 1.0, "system.inverter_eff_nom must be within 0.8-1")
+        require(self.dc_kw > 0, "system.dc_kw must be positive")
+        require(0.8 <= self.dc_ac_ratio <= 2.0, "system.dc_ac_ratio must be within 0.8-2.0")
+        require(self.n_inverters >= 1, "system.n_inverters must be >= 1")
+        require(0 <= self.tilt_deg <= 90, "system.tilt_deg must be within 0-90")
+        require(0 <= self.azimuth_deg < 360, "system.azimuth_deg must be within 0-360")
+        require(-0.01 < self.gamma_pdc < 0, "system.gamma_pdc should be a small negative number")
+        require(0 <= self.losses_pct < 50, "system.losses_pct must be within 0-50")
+        require(0.8 < self.inverter_eff_nom <= 1.0, "system.inverter_eff_nom must be within 0.8-1")
 
 
 @dataclass(frozen=True)
@@ -84,24 +84,22 @@ class FinanceConfig:
     yield_uncertainty: float = 0.06
 
     def validate(self) -> None:
-        _require(self.capex_per_w_dc > 0, "finance.capex_per_w_dc must be positive")
-        _require(self.tariff_per_kwh > 0, "finance.tariff_per_kwh must be positive")
-        _require(0 < self.discount_rate < 0.5, "finance.discount_rate must be within 0-0.5")
-        _require(self.life_yrs >= 1, "finance.life_yrs must be >= 1")
-        _require(0 <= self.itc < 1, "finance.itc must be within 0-1")
-        _require(0 <= self.tax_rate < 1, "finance.tax_rate must be within 0-1")
-        _require(0 <= self.degradation < 0.05, "finance.degradation must be within 0-0.05")
-        _require(
+        require(self.capex_per_w_dc > 0, "finance.capex_per_w_dc must be positive")
+        require(self.tariff_per_kwh > 0, "finance.tariff_per_kwh must be positive")
+        require(0 < self.discount_rate < 0.5, "finance.discount_rate must be within 0-0.5")
+        require(self.life_yrs >= 1, "finance.life_yrs must be >= 1")
+        require(0 <= self.itc < 1, "finance.itc must be within 0-1")
+        require(0 <= self.tax_rate < 1, "finance.tax_rate must be within 0-1")
+        require(0 <= self.degradation < 0.05, "finance.degradation must be within 0-0.05")
+        require(
             0 < self.inverter_replace_yr <= self.life_yrs,
             "finance.inverter_replace_yr must fall within the project life",
         )
-        _require(
+        require(
             abs(sum(self.macrs_schedule) - 1.0) < 1e-6,
             "finance.macrs_schedule must sum to 1.0",
         )
-        _require(
-            0 <= self.yield_uncertainty < 0.5, "finance.yield_uncertainty must be within 0-0.5"
-        )
+        require(0 <= self.yield_uncertainty < 0.5, "finance.yield_uncertainty must be within 0-0.5")
 
 
 @dataclass(frozen=True)
@@ -119,12 +117,12 @@ class MonitoringConfig:
     major_outage_threshold: float = 0.5  # flag when output drops by more than half
 
     def validate(self) -> None:
-        _require(self.hourly_noise >= 0 and self.daily_noise >= 0, "noise must be >= 0")
-        _require(self.min_expected_kwh_per_kwp >= 0, "min_expected_kwh_per_kwp must be >= 0")
-        _require(self.baseline_window_days >= self.baseline_min_days >= 1, "bad baseline window")
-        _require(self.drift_window_days >= 1, "drift_window_days must be >= 1")
-        _require(0 < self.drift_threshold < 0.5, "drift_threshold must be within 0-0.5")
-        _require(0 < self.major_outage_threshold < 1, "major_outage_threshold must be within 0-1")
+        require(self.hourly_noise >= 0 and self.daily_noise >= 0, "noise must be >= 0")
+        require(self.min_expected_kwh_per_kwp >= 0, "min_expected_kwh_per_kwp must be >= 0")
+        require(self.baseline_window_days >= self.baseline_min_days >= 1, "bad baseline window")
+        require(self.drift_window_days >= 1, "drift_window_days must be >= 1")
+        require(0 < self.drift_threshold < 0.5, "drift_threshold must be within 0-0.5")
+        require(0 < self.major_outage_threshold < 1, "major_outage_threshold must be within 0-1")
 
 
 @dataclass(frozen=True)
@@ -146,12 +144,12 @@ class ProjectConfig:
 T = TypeVar("T")
 
 
-def _require(cond: bool, msg: str) -> None:
+def require(cond: bool, msg: str) -> None:
     if not cond:
         raise ConfigError(msg)
 
 
-def _build(cls: type[T], data: dict[str, Any], section: str) -> T:
+def build_section(cls: type[T], data: dict[str, Any], section: str) -> T:
     known = {f.name: f for f in fields(cls)}  # type: ignore[arg-type]
     unknown = set(data) - set(known)
     if unknown:
@@ -173,8 +171,8 @@ def load_config(path: str | Path | None = None) -> ProjectConfig:
     if unknown:
         raise ConfigError(f"Unknown section(s): {', '.join(sorted(unknown))}")
     return ProjectConfig(
-        site=_build(SiteConfig, raw.get("site", {}), "site"),
-        system=_build(SystemConfig, raw.get("system", {}), "system"),
-        finance=_build(FinanceConfig, raw.get("finance", {}), "finance"),
-        monitoring=_build(MonitoringConfig, raw.get("monitoring", {}), "monitoring"),
+        site=build_section(SiteConfig, raw.get("site", {}), "site"),
+        system=build_section(SystemConfig, raw.get("system", {}), "system"),
+        finance=build_section(FinanceConfig, raw.get("finance", {}), "finance"),
+        monitoring=build_section(MonitoringConfig, raw.get("monitoring", {}), "monitoring"),
     ).validate()
