@@ -1,6 +1,8 @@
 -- "X-of-Y" baseline (default 10-of-10): for each device and analysis day, average
 -- the load at each hour over the N most recent eligible days before it.
 -- Eligible = weekday, not a dispatch day, and a complete 24 h of telemetry.
+-- One row per hour the device reported on the analysis day (a baseline hour with no
+-- actual reading to compare against is of no use for M&V).
 WITH baseline_days AS (
     SELECT a.analysis_id, d.device_id, d.day
     FROM int_analysis_days a

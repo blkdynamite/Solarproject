@@ -11,8 +11,6 @@ from typing import Any
 from .config import StudyConfig
 from .estimators import METHODS
 
-TARGET_PRECISION_PCT = 5.0
-
 
 def _usd(x: float) -> str:
     sign = "−" if x < 0 else ""
@@ -39,11 +37,11 @@ def render(s: dict[str, Any], cfg: StudyConfig) -> str:
     by = pv["by_method"]
 
     rec = next(
-        (r for r in ho["tradeoff"] if r["ci_halfwidth_pct_ml_adjusted"] <= TARGET_PRECISION_PCT),
+        (r for r in ho["tradeoff"] if r["ci_halfwidth_pct_ml_adjusted"] <= mv.target_precision_pct),
         ho["tradeoff"][-1],
     )
     raw_same = next(
-        (r for r in ho["tradeoff"] if r["ci_halfwidth_pct_raw"] <= TARGET_PRECISION_PCT), None
+        (r for r in ho["tradeoff"] if r["ci_halfwidth_pct_raw"] <= mv.target_precision_pct), None
     )
     raw_note = (
         f"a plain control-group comparison would need a {raw_same['holdout_share']:.0%} holdout "
@@ -92,8 +90,8 @@ events · simulated data with known ground truth.*
 3. **Recommendation: evaluate with a randomised control group plus an ML counterfactual.** It
    was within {abs(best["season_error_pct"]):.1f} % of the truth for the season and within
    {best["event_worst_error_pct"]:.0f} % on every single event{calibration}. A
-   **{rec["holdout_share"]:.0%} holdout** is enough for ±{rec["ci_halfwidth_pct_ml_adjusted"]:.1f} %
-   precision on each event; {raw_note}.
+   **{rec["holdout_share"]:.0%} holdout** ({rec["forgone_mw"]:.1f} MW set aside) is enough for
+   ±{rec["ci_halfwidth_pct_ml_adjusted"]:.1f} % precision on each event; {raw_note}.
 
 ![Event day profile](1_event_day_profile.png)
 

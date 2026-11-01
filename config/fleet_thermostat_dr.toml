@@ -33,5 +33,6 @@ min_coverage = 1.0
 n_placebo_days = 10
 n_bootstrap = 500
 confidence = 0.90
+target_precision_pct = 2.0     # +/- per-event precision used to size the holdout
 capacity_value_per_kw_yr = 100.0   # illustrative avoided capacity cost
 program_devices = 50000

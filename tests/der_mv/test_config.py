@@ -1,5 +1,6 @@
 from dataclasses import replace
 from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -22,7 +23,7 @@ def test_shipped_config_matches_defaults() -> None:
         {"override_rate": 0.9},
     ],
 )
-def test_invalid_fleet_rejected(overrides: dict[str, float]) -> None:
+def test_invalid_fleet_rejected(overrides: dict[str, Any]) -> None:
     with pytest.raises(ConfigError):
         replace(FleetConfig(), **overrides).validate()
 

@@ -55,6 +55,7 @@ class MVConfig:
     n_placebo_days: int = 10
     n_bootstrap: int = 500
     confidence: float = 0.90
+    target_precision_pct: float = 2.0  # +/- per-event precision used to size the holdout
     # Value
     capacity_value_per_kw_yr: float = 100.0  # $/kW-yr, illustrative avoided capacity cost
     program_devices: int = 50_000  # scale results to a utility-sized program
@@ -66,6 +67,7 @@ class MVConfig:
         require(0 < self.min_coverage <= 1, "mv.min_coverage must be within 0-1")
         require(self.n_bootstrap >= 50, "mv.n_bootstrap must be >= 50")
         require(0.5 < self.confidence < 1, "mv.confidence must be within 0.5-1")
+        require(0 < self.target_precision_pct < 50, "mv.target_precision_pct must be 0-50")
 
 
 @dataclass(frozen=True)

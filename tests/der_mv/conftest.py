@@ -22,7 +22,9 @@ def small_cfg() -> StudyConfig:
 
 
 @pytest.fixture(scope="session")
-def analysis(small_cfg: StudyConfig, tmp_path_factory: pytest.TempPathFactory) -> Iterator[Analysis]:
+def analysis(
+    small_cfg: StudyConfig, tmp_path_factory: pytest.TempPathFactory
+) -> Iterator[Analysis]:
     tmp: Path = tmp_path_factory.mktemp("fleet")
     a = analyze(small_cfg, ":memory:", tmp / "raw")
     yield a

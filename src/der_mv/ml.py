@@ -52,12 +52,18 @@ def train(
     Splitting by day (not by row) matters: rows from the same day share weather
     and behaviour, so a random row split would leak and flatter the model.
     """
+    # Deterministic hash sampling (DuckDB's reservoir sampling is not reproducible
+    # under multi-threading) and a fixed row order, so every run trains the same model.
+    n_rows = con.execute("SELECT count(*) FROM mart_ml_features WHERE NOT is_analysis_day")
+    total = int(n_rows.fetchone()[0])  # type: ignore[index]
+    keep_per_million = min(1_000_000, int(1_000_000 * sample_rows / max(total, 1)))
     df = con.execute(
         f"""
         SELECT {", ".join(FEATURES)}, {TARGET}, day
         FROM mart_ml_features
         WHERE NOT is_analysis_day
-        USING SAMPLE reservoir({int(sample_rows)} ROWS) REPEATABLE ({int(seed)})
+          AND hash(device_id, ts, {int(seed)}) % 1000000 < {keep_per_million}
+        ORDER BY device_id, ts
         """
     ).df()
     rng = np.random.default_rng(seed)

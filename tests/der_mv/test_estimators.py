@@ -5,8 +5,9 @@ import pytest
 from der_mv import estimators as es
 
 
-def _values(n_t: int = 400, n_c: int = 100, model_bias: float = 0.3, effect: float = 1.0,
-            seed: int = 0) -> pd.DataFrame:
+def _values(
+    n_t: int = 400, n_c: int = 100, model_bias: float = 0.3, effect: float = 1.0, seed: int = 0
+) -> pd.DataFrame:
     """Synthetic device values with a known effect and a known model bias."""
     rng = np.random.default_rng(seed)
     n = n_t + n_c
@@ -45,7 +46,10 @@ def test_control_group_cancels_model_bias() -> None:
 
 def test_ml_adjustment_shrinks_the_confidence_interval() -> None:
     est = es.estimate(_values(), n_boot=400, seed=1)
-    width = {k: np.diff(np.nanquantile(r[:, 0], [0.05, 0.95]))[0] for k, r in est.replicates.items()}
+    width = {
+        k: np.diff(np.quantile(est.replicates[k][:, 0], [0.05, 0.95]))[0]
+        for k in ("rct", "ml_control")
+    }
     assert width["ml_control"] < width["rct"] / 3
 
 

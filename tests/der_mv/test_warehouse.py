@@ -17,7 +17,9 @@ def test_deduplication_keeps_one_row_per_device_hour(analysis: Analysis) -> None
     assert staged == len(raw.drop_duplicates(["device_id", "ts"]))
 
 
-def test_ten_of_ten_sql_matches_pandas_reference(analysis: Analysis, small_cfg: StudyConfig) -> None:
+def test_ten_of_ten_sql_matches_pandas_reference(
+    analysis: Analysis, small_cfg: StudyConfig
+) -> None:
     """Re-implement the 10-of-10 baseline independently and compare with the SQL model."""
     con, mv = analysis.con, small_cfg.mv
     tel = wh.query(con, "SELECT device_id, ts, day, hod, kw FROM stg_telemetry")
@@ -40,16 +42,21 @@ def test_ten_of_ten_sql_matches_pandas_reference(analysis: Analysis, small_cfg: 
             & (counts.to_numpy() == 24)
         )
         chosen = set(days[ok].sort_values().iloc[-mv.baseline_days :].dt.date)
-        ref = (
-            d[pd.to_datetime(d["day"]).dt.date.isin(chosen)].groupby("hod")["kw"].mean()
-        )
+        ref = d[pd.to_datetime(d["day"]).dt.date.isin(chosen)].groupby("hod")["kw"].mean()
         sql = wh.query(
             con,
             f"SELECT hod, baseline_kw FROM mart_baseline_hourly "
             f"WHERE analysis_id = {row['analysis_id']} AND device_id = {device_id}",
         ).set_index("hod")["baseline_kw"]
+        # The mart only has hours the device reported on the analysis day itself.
+        assert set(sql.index) <= set(ref.index)
+        assert len(sql) >= 20
         pd.testing.assert_series_equal(
-            sql.sort_index(), ref.sort_index(), check_names=False, check_dtype=False, rtol=1e-5
+            sql.sort_index(),
+            ref.loc[sql.index].sort_index(),
+            check_names=False,
+            check_dtype=False,
+            rtol=1e-5,
         )
 
 
