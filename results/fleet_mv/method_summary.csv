@@ -1,0 +1,6 @@
+method,label,season_kw,season_ci_low,season_ci_high,true_season_kw,season_error_pct,event_mae_kw,event_error_sd_kw,event_worst_error_pct,event_ci_halfwidth_kw,event_ci_coverage,placebo_mean_kw,placebo_mae_kw,placebo_ci_coverage
+ten_of_ten,10-of-10 baseline,-0.0062,-0.0202,0.0064,1.0081,-100.6136,1.0143,0.322,135.8922,0.0224,0.0,-0.4541,0.487,0.0
+ten_of_ten_adj,10-of-10 + day-of adjustment,0.9255,0.9074,0.9425,1.0081,-8.1983,0.2245,0.289,62.8046,0.0251,0.0667,0.1141,0.1325,0.1
+ml,ML counterfactual,1.0098,0.9941,1.0237,1.0081,0.1688,0.1859,0.2187,41.6866,0.0221,0.0,0.0607,0.0635,0.1
+ml_control,ML + control group,1.0109,0.9894,1.0302,1.0081,0.2719,0.0093,0.0118,2.4236,0.03,1.0,0.0014,0.006,0.9
+rct,Control group (RCT),0.9552,0.903,1.0146,1.0081,-5.2544,0.053,0.0235,9.2289,0.0655,0.6667,-0.0422,0.0422,0.9
